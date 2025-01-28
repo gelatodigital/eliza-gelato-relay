@@ -89,7 +89,7 @@ For both scenarios, successful execution returns:
 -   **`schemas.ts`**:
     Defines Zod schemas to validate user input.
 
--   **`actions.ts`**:
+-   **`actionsContractInteraction.ts`**:
     Contains the action logic, including parsing natural language input and invoking Gelato Relay.
 
 ### Testing
@@ -110,7 +110,3 @@ For both scenarios, successful execution returns:
 ## License
 
 This plugin is licensed under the MIT License. See the `LICENSE` file for details.
-
-```
-
-```

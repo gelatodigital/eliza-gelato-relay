@@ -9,6 +9,7 @@ export const SupportedChainsSchema = z.enum([
     "arbitrum",
     "optimism",
     "arbitrumSepolia",
+    "inkSepolia"
     // Add more supported chains as needed
 ]);
 

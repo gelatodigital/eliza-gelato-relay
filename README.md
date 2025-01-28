@@ -1,192 +1,112 @@
-# Eliza 🤖
+# plugin-gelato
 
-<div align="center">
-  <img src="./docs/static/img/eliza_banner.jpg" alt="Eliza Banner" width="100%" />
-</div>
-
-<div align="center">
-
-📑 [Technical Report](https://arxiv.org/pdf/2501.06781) |  📖 [Documentation](https://elizaos.github.io/eliza/) | 🎯 [Examples](https://github.com/thejoven/awesome-eliza)
-
-</div>
-
-## 🌍 README Translations
-
-[中文说明](i18n/readme/README_CN.md) | [日本語の説明](i18n/readme/README_JA.md) | [한국어 설명](i18n/readme/README_KOR.md) | [Persian](i18n/readme/README_FA.md) | [Français](i18n/readme/README_FR.md) | [Português](i18n/readme/README_PTBR.md) | [Türkçe](i18n/readme/README_TR.md) | [Русский](i18n/readme/README_RU.md) | [Español](i18n/readme/README_ES.md) | [Italiano](i18n/readme/README_IT.md) | [ไทย](i18n/readme/README_TH.md) | [Deutsch](i18n/readme/README_DE.md) | [Tiếng Việt](i18n/readme/README_VI.md) | [עִברִית](i18n/readme/README_HE.md) | [Tagalog](i18n/readme/README_TG.md) | [Polski](i18n/readme/README_PL.md) | [Arabic](i18n/readme/README_AR.md) | [Hungarian](i18n/readme/README_HU.md) | [Srpski](i18n/readme/README_RS.md) | [Română](i18n/readme/README_RO.md) | [Nederlands](i18n/readme/README_NL.md) | [Ελληνικά](i18n/readme/README_GR.md)
-
-## 🚩 Overview
-
-<div align="center">
-  <img src="./docs/static/img/eliza_diagram.png" alt="Eliza Diagram" width="100%" />
-</div>
-
-## ✨ Features
-
-- 🛠️ Full-featured Discord, Twitter and Telegram connectors
-- 🔗 Support for every model (Llama, Grok, OpenAI, Anthropic, Gemini, etc.)
-- 👥 Multi-agent and room support
-- 📚 Easily ingest and interact with your documents
-- 💾 Retrievable memory and document store
-- 🚀 Highly extensible - create your own actions and clients
-- 📦 Just works!
-
-## Video Tutorials
-
-[AI Agent Dev School](https://www.youtube.com/watch?v=ArptLpQiKfI&list=PLx5pnFXdPTRzWla0RaOxALTSTnVq53fKL)
-
-## 🎯 Use Cases
-
-- 🤖 Chatbots
-- 🕵️ Autonomous Agents
-- 📈 Business Process Handling
-- 🎮 Video Game NPCs
-- 🧠 Trading
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-- [Python 2.7+](https://www.python.org/downloads/)
-- [Node.js 23+](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-- [pnpm](https://pnpm.io/installation)
-
-> **Note for Windows Users:** [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install-manual) is required.
-
-### Use the Starter (Recommended)
-
-```bash
-git clone https://github.com/elizaos/eliza-starter.git
-cd eliza-starter
-cp .env.example .env
-pnpm i && pnpm build && pnpm start
-```
-
-### Manually Start Eliza (Only recommended if you know what you are doing)
-
-#### Checkout the latest release
-
-```bash
-# Clone the repository
-git clone https://github.com/elizaos/eliza.git
-
-# This project iterates fast, so we recommend checking out the latest release
-git checkout $(git describe --tags --abbrev=0)
-# If the above doesn't checkout the latest release, this should work:
-# git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
-```
-
-#### Edit the .env file
-
-Copy .env.example to .env and fill in the appropriate values.
-
-```
-cp .env.example .env
-```
-
-Note: .env is optional. If you're planning to run multiple distinct agents, you can pass secrets through the character JSON
-
-#### Start Eliza
-
-```bash
-pnpm i
-pnpm build
-pnpm start
-
-# The project iterates fast, sometimes you need to clean the project if you are coming back to the project
-pnpm clean
-```
-
-### Interact via Browser
-
-Once the agent is running, you should see the message to run "pnpm start:client" at the end.
-
-Open another terminal, move to the same directory, run the command below, then follow the URL to chat with your agent.
-
-```bash
-pnpm start:client
-```
-
-Then read the [Documentation](https://elizaos.github.io/eliza/) to learn how to customize your Eliza.
+A powerful plugin to interact with smart contracts using Gelato Relay, supporting both **ERC2771 (meta transactions)** and **non-ERC2771 calls** on any EVM-compatible blockchain.
 
 ---
 
-### Automatically Start Eliza
+## Features
 
-The start script provides an automated way to set up and run Eliza:
-
-```bash
-sh scripts/start.sh
-```
-
-For detailed instructions on using the start script, including character management and troubleshooting, see our [Start Script Guide](./docs/docs/guides/start-script.md).
-
-> **Note**: The start script handles all dependencies, environment setup, and character management automatically.
+-   **Sponsored Calls**: Interact with contracts without needing gas on the user's side.
+-   **ERC2771 Support**: Execute meta-transactions via Gelato's `sponsoredCallERC2771`.
+-   **Customizable**: Easily configure chains, contracts, and user-specific settings.
 
 ---
 
-### Modify Character
+## Prerequisites
 
-1. Open `packages/core/src/defaultCharacter.ts` to modify the default character. Uncomment and edit.
-
-2. To load custom characters:
-    - Use `pnpm start --characters="path/to/your/character.json"`
-    - Multiple character files can be loaded simultaneously
-3. Connect with X (Twitter)
-    - change `"clients": []` to `"clients": ["twitter"]` in the character file to connect with X
+-   pnpm
+-   A Gelato Relay API key
 
 ---
 
-#### Additional Requirements
-
-You may need to install Sharp. If you see an error when starting up, try installing it with the following command:
+## Installation
 
 ```
-pnpm install --include=optional sharp
+pnpm install elizaos/plugin-gelato
 ```
 
 ---
 
-### Start Eliza with Gitpod
+## Configuration
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/elizaos/eliza/tree/main)
+Fill out the `.env` file in the project root with the following variables:
 
----
-
-### Deploy Eliza in one click 
-
-Use [Fleek](https://fleek.xyz/eliza/) to deploy Eliza in one click. This opens Eliza to non-developers and provides the following options to build your agent:
-1. Start with a template
-2. Build characterfile from scratch
-3. Upload pre-made characterfile
-
-Click [here](https://fleek.xyz/eliza/) to get started!
-
----
-
-### Community & contact
-
-- [GitHub Issues](https://github.com/elizaos/eliza/issues). Best for: bugs you encounter using Eliza, and feature proposals.
-- [Discord](https://discord.gg/ai16z). Best for: sharing your applications and hanging out with the community.
-
-## Citation
-
-We now have a [paper](https://arxiv.org/pdf/2501.06781) you can cite for the Eliza OS:
-```bibtex
-@article{walters2025eliza,
-  title={Eliza: A Web3 friendly AI Agent Operating System},
-  author={Walters, Shaw and Gao, Sam and Nerd, Shakker and Da, Feng and Williams, Warren and Meng, Ting-Chien and Han, Hunter and He, Frank and Zhang, Allen and Wu, Ming and others},
-  journal={arXiv preprint arXiv:2501.06781},
-  year={2025}
-}
+```
+GELATO_RELAY_API_KEY=<Your Gelato Relay API Key>
+EVM_PROVIDER_URL=<Your EVM provider URL (e.g., Alchemy or Infura endpoint)>
+EVM_PRIVATE_KEY=<Your wallet's private key>
 ```
 
-## Contributors
+---
 
-<a href="https://github.com/elizaos/eliza/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=elizaos/eliza" alt="Eliza project contributors" />
-</a>
+## Usage
 
+### For Non-ERC2771 (Standard Sponsored Call)
 
-## Star History
+```plaintext
+Call increment() on 0x3890DB55ff538FBF281c9152820A4a748f5D6F21 contract:
+- Function Name: increment
+- Args: []
+- Target: 0x3890DB55ff538FBF281c9152820A4a748f5D6F21
+- Chain: arbitrumSepolia
+- ABI: ["function increment()"]
+```
 
-[![Star History Chart](https://api.star-history.com/svg?repos=elizaos/eliza&type=Date)](https://star-history.com/#elizaos/eliza&Date)
+### For ERC2771 (Meta-Transactions)
+
+```plaintext
+Call increment() on 0x00172f67db60E5fA346e599cdE675f0ca213b47b contract:
+- Function Name: increment
+- Args: []
+- Target: 0x00172f67db60E5fA346e599cdE675f0ca213b47b
+- Chain: arbitrumSepolia
+- ABI: ["function increment()"]
+- User: 0xYourAddressHere
+```
+
+### Example Output
+
+For both scenarios, successful execution returns:
+
+```plaintext
+✅ Contract interaction successful!
+- Function: increment
+- Target: 0x<contract_address>
+- Chain: arbitrumSepolia
+- Task ID: <task_id>
+- Track Status: [View Task](https://relay.gelato.digital/tasks/status/<task_id>)
+```
+
+---
+
+## Development
+
+### Code Structure
+
+-   **`utils.ts`**:
+    Contains functions for `sponsoredCall` and `sponsoredCallERC2771`.
+
+-   **`schemas.ts`**:
+    Defines Zod schemas to validate user input.
+
+-   **`actionsContractInteraction.ts`**:
+    Contains the action logic, including parsing natural language input and invoking Gelato Relay.
+
+### Testing
+
+1. Update your `.env` file with valid keys.
+2. Test both **ERC2771** and **non-ERC2771** prompts using the examples above.
+
+---
+
+## Troubleshooting
+
+-   Ensure your `.env` file is properly configured.
+-   Verify that your contract ABI, function name, and chain match the deployed contract details.
+-   For ERC2771 calls, confirm the `User` address is correct and matches the expected `_msgSender` logic in the contract.
+
+---
+
+## License
+
+This plugin is licensed under the MIT License. See the `LICENSE` file for details.

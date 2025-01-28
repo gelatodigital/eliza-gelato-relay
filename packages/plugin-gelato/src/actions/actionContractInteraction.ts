@@ -104,11 +104,12 @@ export const contractInteractionAction: Action = {
                 const supportedChains = [
                     "mainnet",
                     "sepolia",
-                    "goerli",
                     "polygon",
                     "arbitrum",
                     "optimism",
                     "arbitrumSepolia",
+                    "inkSepolia",
+                    "ink"
                 ] as const;
 
                 const chain = chainMatch[1] as string;
